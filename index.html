@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embedded Product Tour</title>
+  <style>
+    body {
+      background-image: url(https://www.reprise.com/wp-content/uploads/2024/10/hero-spacey-bg-3.jpg);
+      background-position: center top;
+      background-repeat: repeat;
+      background-color: #22208d;
+    }
+  </style>
+  <script>
+    // listen for our post message in the parent frame
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.data && event.data.data.key === 'marketo target screen') {
+        console.log("FOUND IT");
+      }
+    });
+  </script>
+</head>
+<body>  
+  <div style="width: 75vw; height: 800px; margin: 100px auto;">
+    <iframe
+      id="sandboxed-iframe"
+      src="https://app.getreprise.com/edit4/preview/162B546/"
+      title="Product Tour by Reprise"
+      name="Strive (Published)"
+      height="100%"
+      width="100%"
+      allow="clipboard-write"
+      style="border: 0"
+    ></iframe>
+  </div>
+</body>
+</html>
