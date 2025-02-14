@@ -24,22 +24,18 @@
   <!-- End Google Tag Manager -->
 
   <script>
-    // // listen for our post message in the parent frame
-    // window.addEventListener('message', function(event) {
-    //   if (event.data && event.data.data && event.data.data.key === 'marketo target screen') {
-    //     console.log("FOUND IT");
-    //   }
-    // });
-
     window.addEventListener("message", function(event) {
       console.log("parent frame event", event);
       if (event.data && event.data.gaEvent) {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           'event': event.data.gaEvent,
-          'category': event.data.category,
           'action': event.data.action,
-          'label': event.data.label,
+          'screen': event.data.screen,
+          'replay_title': event.data.replay_title,
+          'replay_id': event.data.replay_id,
+          'environment': event.data.environment,
+          'url': event.data.url,
           'context': event.data.context
         });
         console.log("parent frame window datalayer push complete");
