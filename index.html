@@ -12,6 +12,17 @@
       background-color: #22208d;
     }
   </style>
+
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-52TG2SGL');
+  </script>
+  <!-- End Google Tag Manager -->
+
   <script>
     // listen for our post message in the parent frame
     window.addEventListener('message', function(event) {
@@ -19,6 +30,19 @@
         console.log("FOUND IT");
       }
     });
+
+    window.addEventListener("message", function(event) {
+      if (event.data && event.data.gaEvent) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': event.data.gaEvent,
+          'category': event.data.category,
+          'action': event.data.action,
+          'label': event.data.label,
+          'value': event.data.value
+        });
+      }
+    }, false);
   </script>
 </head>
 <body>  
@@ -31,6 +55,12 @@
 
     gtag('config', 'G-QXRYV9SWYJ');
   </script>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52TG2SGL" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+
   <div style="width: 75vw; height: 800px; margin: 100px auto;">
     <iframe
       id="sandboxed-iframe"
