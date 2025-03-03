@@ -47,6 +47,26 @@
   <!-- End Google Tag Manager -->
 
   <script>
+    window.addEventListener("message", function(event) {
+      console.log("parent frame event", event);
+      if (event.data && event.data.gaEvent) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': event.data.gaEvent,
+          'action': event.data.action,
+          'screen': event.data.screen,
+          'replay_title': event.data.replay_title,
+          'replay_id': event.data.replay_id,
+          'environment': event.data.environment,
+          'url': event.data.url,
+          'context': event.data.context
+        });
+        console.log("parent frame window datalayer push complete");
+      }
+    }, false);
+  </script>
+
+  <script>
     function showIframe() {
       document.getElementById("iframe-container").style.display = "block";
       document.getElementById("enter-button").style.display = "none";
