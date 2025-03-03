@@ -71,6 +71,17 @@
       document.getElementById("iframe-container").style.display = "block";
       document.getElementById("enter-button").style.display = "none";
 
+      // Create and append iframe dynamically
+      let iframe = document.createElement("iframe");
+      iframe.id = "sandboxed-iframe";
+      iframe.src = "https://app.getreprise.com/launch/b6Ojx2y/";
+      iframe.title = "Strive - GA Example (demo iframe title)";
+      iframe.name = "Strive - GA Example (demo iframe name)";
+      iframe.height = "100%";
+      iframe.width = "100%";
+      iframe.allow = "clipboard-write";
+      iframe.style.border = "0";
+
       // Google Analytics event on button press
       if (window.dataLayer) {
         window.dataLayer.push({
@@ -103,17 +114,6 @@
   <p>Click the button below to enter the experience.</p>
   <button id="enter-button" onclick="showIframe()">Enter</button>
 
-  <div id="iframe-container" style="width: 75vw; height: 800px; margin: 100px auto; display: none;">
-    <iframe
-      id="sandboxed-iframe"
-      src="https://app.getreprise.com/launch/b6Ojx2y/"
-      title="Strive - GA Example (demo iframe title)"
-      name="Strive - GA Example (demo iframe name)"
-      height="100%"
-      width="100%"
-      allow="clipboard-write"
-      style="border: 0"
-    ></iframe>
-  </div>
+  <div id="iframe-container" style="width: 75vw; height: 800px; margin: 100px auto; display: none;"></div>
 </body>
 </html>
