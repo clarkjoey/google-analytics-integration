@@ -1,66 +1,50 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Strive - GA Example</title>
+  <title>Welcome to Strive</title>
   <style>
     body {
       background-image: url(https://www.reprise.com/wp-content/uploads/2024/10/hero-spacey-bg-3.jpg);
       background-position: center top;
       background-repeat: repeat;
       background-color: #22208d;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #ff9800;
+      border: none;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background-color: #e68900;
     }
   </style>
-
-  <!-- Google Tag Manager -->
   <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-52TG2SGL');
-  </script>
-  <!-- End Google Tag Manager -->
-
-  <script>
-    window.addEventListener("message", function(event) {
-      console.log("parent frame event", event);
-      if (event.data && event.data.gaEvent) {
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          'event': event.data.gaEvent,
-          'action': event.data.action,
-          'screen': event.data.screen,
-          'replay_title': event.data.replay_title,
-          'replay_id': event.data.replay_id,
-          'environment': event.data.environment,
-          'url': event.data.url,
-          'context': event.data.context
-        });
-        console.log("parent frame window datalayer push complete");
-      }
-    }, false);
+    function showIframe() {
+      document.getElementById("iframe-container").style.display = "block";
+      document.getElementById("enter-button").style.display = "none";
+    }
   </script>
 </head>
-<body>  
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXRYV9SWYJ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+<body>
+  <h1>Welcome to Strive - GA Example</h1>
+  <p>Click the button below to enter the experience.</p>
+  <button id="enter-button" onclick="showIframe()">Enter</button>
 
-    gtag('config', 'G-QXRYV9SWYJ');
-  </script>
-
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52TG2SGL" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-  <div style="width: 75vw; height: 800px; margin: 100px auto;">
+  <div id="iframe-container" style="width: 75vw; height: 800px; margin: 100px auto; display: none;">
     <iframe
       id="sandboxed-iframe"
       src="https://app.getreprise.com/launch/b6Ojx2y/"
