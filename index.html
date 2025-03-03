@@ -39,6 +39,16 @@
     function showIframe() {
       document.getElementById("iframe-container").style.display = "block";
       document.getElementById("enter-button").style.display = "none";
+
+      // Google Analytics event on button press
+      if (window.dataLayer) {
+        window.dataLayer.push({
+          'event': 'embed_page_button_click',
+          'action': 'start demo from parent website',
+          'category': 'user interaction'
+        });
+        console.log("GA event fired: Enter Strive Experience");
+      }
     }
   </script>
 </head>
