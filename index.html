@@ -51,9 +51,9 @@
     window.addEventListener("message", function(event) {
       if (event.data && event.data.gaEvent) {
         console.log("parent frame GA event", event.data);
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: event.data.gaEvent,
+
+        let payload = {
+          event: 'gtm_replay_page_view_ready', // 🔥 Change event name
           dlv_action: event.data.action,
           dlv_screen: event.data.screen,
           dlv_replay_title: event.data.replay_title,
@@ -61,10 +61,13 @@
           dlv_environment: event.data.environment,
           dlv_url: event.data.url,
           user_interaction: 'demo frame interaction'
-        });
-        console.log("parent frame window datalayer push complete");
+        };
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(payload);
+        console.log("parent frame window datalayer push complete", payload);
       }
-    }, false);
+    });
   </script>  
 
   <!-- initialize the embedded demo -->
