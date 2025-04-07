@@ -48,39 +48,23 @@
 
   <!-- track events using the dataLayer - sends custom events to GTM -->
   <script>
-    function waitForDataAndPush(event) {
-      let attempts = 0;
-
-      let interval = setInterval(() => {
-        let ready =
-          event.data &&
-          event.data.gaEvent &&
-          event.data.replay_id &&
-          event.data.screen &&
-          event.data.replay_title;
-
-        if (ready || attempts > 10) {
-          clearInterval(interval);
-
-          if (ready) {
-            window.dataLayer.push({
-              event: event.data.gaEvent,
-              dlv_action: event.data.action,
-              dlv_screen: event.data.screen,
-              dlv_replay_title: event.data.replay_title,
-              dlv_replay_id: event.data.replay_id,
-              dlv_environment: event.data.environment,
-              dlv_url: event.data.url,
-              user_interaction: 'demo frame interaction'
-            });
-          } else {
-            console.warn('GA event values not ready after waiting');
-          }
-        }
-
-        attempts++;
-      }, 25); // try every 25ms, up to ~250ms max
-    }
+    window.addEventListener("message", function(event) {
+      console.log("parent frame event", event);
+      if (event.data && event.data.gaEvent) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: event.data.gaEvent,
+          dlv_action: event.data.action,
+          dlv_screen: event.data.screen,
+          dlv_replay_title: event.data.replay_title,
+          dlv_replay_id: event.data.replay_id,
+          dlv_environment: event.data.environment,
+          dlv_url: event.data.url,
+          user_interaction: 'demo frame interaction'
+        });
+        console.log("parent frame window datalayer push complete");
+      }
+    }, false);
   </script>  
 
   <!-- initialize the embedded demo -->
