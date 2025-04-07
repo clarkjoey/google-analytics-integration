@@ -53,19 +53,20 @@
       if (event.data && event.data.gaEvent) {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
-          'event': event.data.gaEvent,
-          'action': event.data.action,
-          'screen': event.data.screen,
-          'replay_title': event.data.replay_title,
-          'replay_id': event.data.replay_id,
-          'environment': event.data.environment,
-          'url': event.data.url,
-          'context': event.data.context
+          event: event.data.gaEvent,
+          dlv_action: event.data.action,
+          dlv_screen: event.data.screen,
+          dlv_replay_title: event.data.replay_title,
+          dlv_replay_id: event.data.replay_id,
+          dlv_environment: event.data.environment,
+          dlv_url: event.data.url,
+          dlv_context: event.data.context,
+          user_interaction: 'demo frame interaction'
         });
         console.log("parent frame window datalayer push complete");
       }
     }, false);
-  </script>
+  </script>  
 
   <!-- initialize the embedded demo -->
   <script>
