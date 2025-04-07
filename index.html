@@ -60,7 +60,8 @@
           dlv_replay_id: event.data.replay_id,
           dlv_environment: event.data.environment,
           dlv_url: event.data.url,
-          user_interaction: 'demo frame interaction'
+          dlv_category: 'demo frame interaction',
+          dlv_context: event.data.context
         };
 
         window.dataLayer = window.dataLayer || [];
@@ -94,7 +95,13 @@
         window.dataLayer.push({
           'event': 'embed_page_button_click',
           'dlv_action': 'start demo from parent website',
-          'dlv_category': 'user interaction'
+          'dlv_screen': 'NA',
+          'dlv_replay_title': 'NA',
+          'dlv_replay_id': 'NA',
+          'dlv_environment': 'parent frame',
+          'dlv_url': 'https://clarkjoey.github.io/google-analytics-integration/',
+          'dlv_category': 'user interaction',
+          'dlv_context': 'no parent frame context'
         });
         console.log("GA event fired: Enter Strive Experience");
       }
