@@ -49,8 +49,8 @@
   <!-- track events using the dataLayer - sends custom events to GTM -->
   <script>
     window.addEventListener("message", function(event) {
-      console.log("parent frame event", event);
       if (event.data && event.data.gaEvent) {
+        console.log("parent frame GA event", event.data);
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           event: event.data.gaEvent,
