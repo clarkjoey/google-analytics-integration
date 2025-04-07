@@ -1,24 +1,23 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welcome to Strive</title>
+
   <style>
     body {
-      background-image: url(https://www.reprise.com/wp-content/uploads/2024/10/hero-spacey-bg-3.jpg);
-      background-position: center top;
-      background-repeat: repeat;
-      background-color: #22208d;
+      background: #22208d url(https://www.reprise.com/wp-content/uploads/2024/10/hero-spacey-bg-3.jpg) top center repeat;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      flex-direction: column;
       text-align: center;
       color: white;
+      font-family: system-ui, sans-serif;
     }
+
     button {
       padding: 15px 30px;
       font-size: 18px;
@@ -28,32 +27,32 @@
       cursor: pointer;
       margin-top: 20px;
     }
+
     button:hover {
       background-color: #e68900;
     }
-    h1, p {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
   </style>
 
-  <!-- initalize Google Tag Manager -->
-  <!-- dynamically loads GTM and initializes window.dataLayer. -->
+  <!-- Google Tag Manager Script -->
   <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+      let f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),
+          dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-52TG2SGL');
   </script>
 
-  <!-- track events using the dataLayer - sends custom events to GTM -->
+  <!-- Listen for replay events from the demo iframe and forward to dataLayer -->
   <script>
     window.addEventListener("message", function(event) {
       if (event.data && event.data.gaEvent) {
-        console.log("parent frame GA event", event.data);
-
         let payload = {
-          event: 'gtm_replay_page_view_ready', // 🔥 Change event name
+          event: 'gtm_replay_page_view_ready',
           dlv_action: event.data.action,
           dlv_screen: event.data.screen,
           dlv_replay_title: event.data.replay_title,
@@ -66,68 +65,66 @@
 
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push(payload);
-        console.log("parent frame window datalayer push complete", payload);
+        console.log("📊 GA Event from iframe pushed to dataLayer:", payload);
       }
     });
-  </script>  
+  </script>
 
-  <!-- initialize the embedded demo -->
+  <!-- Function to embed iframe and track entry click -->
   <script>
     function showIframe() {
       document.getElementById("iframe-container").style.display = "block";
       document.getElementById("enter-button").style.display = "none";
 
-      // create and append iframe dynamically - make it really obvious to see it start in analytics after button press
-      // custom "gtm_replay_page_view" on replay start in our case
+      // Create and append iframe
       let iframe = document.createElement("iframe");
       iframe.id = "sandboxed-iframe";
       iframe.src = "https://app.getreprise.com/launch/b6Ojx2y/";
-      iframe.title = "Strive - GA Example (demo iframe title)";
-      iframe.name = "Strive - GA Example (demo iframe name)";
-      iframe.height = "100%";
+      iframe.title = "Strive - GA Example";
       iframe.width = "100%";
+      iframe.height = "100%";
       iframe.allow = "clipboard-write";
       iframe.style.border = "0";
       document.getElementById("iframe-container").appendChild(iframe);
 
-      // send a custom 'embed_page_button_click' GA event on button press
-      if (window.dataLayer) {
-        window.dataLayer.push({
-          'event': 'embed_page_button_click',
-          'dlv_action': 'start demo from parent website',
-          'dlv_screen': 'NA',
-          'dlv_replay_title': 'NA',
-          'dlv_replay_id': 'NA',
-          'dlv_environment': 'parent frame',
-          'dlv_url': 'https://clarkjoey.github.io/google-analytics-integration/',
-          'dlv_category': 'user interaction',
-          'dlv_context': 'no parent frame context'
-        });
-        console.log("GA event fired: Enter Strive Experience");
-      }
+      // Track 'Enter' button click with GA
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'embed_page_button_click',
+        dlv_action: 'start demo from parent website',
+        dlv_screen: 'NA',
+        dlv_replay_title: 'NA',
+        dlv_replay_id: 'NA',
+        dlv_environment: 'parent frame',
+        dlv_url: window.location.href,
+        dlv_category: 'user interaction',
+        dlv_context: 'no parent frame context'
+      });
+
+      console.log("📊 GA Event: Enter button clicked");
     }
   </script>
 </head>
+
 <body>
-  <!-- inintialize Google Analytics -->
+  <!-- GA4 fallback snippet -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXRYV9SWYJ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-QXRYV9SWYJ');
   </script>
 
-  <!-- FALLBACK for initializing Google Tag Manager (javascript disabled cases) -->
+  <!-- No-JS fallback for GTM -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52TG2SGL" height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
 
-  <!-- website mock up -->
+  <!-- Basic Website UI -->
   <h1>Welcome to Strive - GA Example</h1>
   <p>Click the button below to enter the experience.</p>
   <button id="enter-button" onclick="showIframe()">Enter</button>
-  <!-- embedded demo mock up -->
-  <div id="iframe-container" style="width: 75vw; height: 800px; margin: 100px auto; display: none;"></div>
+  <div id="iframe-container" style="width: 75vw; height: 800px; margin-top: 80px; display: none;"></div>
 </body>
 </html>
