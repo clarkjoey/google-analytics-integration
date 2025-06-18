@@ -35,16 +35,11 @@
 
   <!-- Google Tag Manager Script -->
   <script>
-    (function(w,d,s,l,i){
-      w[l]=w[l]||[];
-      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
-      let f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),
-          dl=l!='dataLayer'?'&l='+l:'';
-      j.async=true;
-      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-      f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-52TG2SGL');
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NNMVCGM7');
   </script>
 
   <!-- Listen for replay events from the demo iframe and forward to dataLayer -->
@@ -52,7 +47,7 @@
     window.addEventListener("message", function(event) {
       if (event.data && event.data.gaEvent) {
         let payload = {
-          event: 'gtm_replay_page_view_ready',
+          event: 'gtm_replay_page_view',
           dlv_action: event.data.action,
           dlv_screen: event.data.screen,
           dlv_replay_title: event.data.replay_title,
@@ -108,21 +103,22 @@
 
 <body>
   <!-- GA4 fallback snippet -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXRYV9SWYJ"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0L1K2B2DYZ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
-    gtag('config', 'G-QXRYV9SWYJ');
+    gtag('config', 'G-0L1K2B2DYZ');
   </script>
 
   <!-- No-JS fallback for GTM -->
   <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52TG2SGL" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNMVCGM7"
+height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
 
   <!-- Basic Website UI -->
-  <h1>Welcome to Strive - GA Example</h1>
+  <h1>Welcome to Strive - GA Example (zineb test)</h1>
   <p>Click the button below to enter the experience.</p>
   <button id="enter-button" onclick="showIframe()">Enter</button>
   <div id="iframe-container" style="width: 75vw; height: 800px; margin-top: 80px; display: none;"></div>
